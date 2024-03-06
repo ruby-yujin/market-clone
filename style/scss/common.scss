@@ -1,3 +1,8 @@
+:root {
+  --button-primary: rgb(235, 181, 81);
+  --button-hover: rgba(255, 200, 15, 0.8);
+}
+
 // * outline * //
 .outline {
   max-width: 768px;
@@ -6,6 +11,9 @@
 }
 
 // * dim * //
+.mediaquery-dim {
+  display: none;
+}
 @media screen and (min-width: 768px) {
   .mediaquery-dim {
     position: fixed;
@@ -70,7 +78,7 @@ header {
 
 // * footer * //
 footer {
-  height: 50px;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -79,11 +87,29 @@ footer {
   .footer-bar {
     text-align: center;
     cursor: pointer;
+    &:hover img {
+      animation: 1.8s icon-doong;
+    }
     img {
       width: 24px;
     }
     p {
       font-size: 12px;
     }
+  }
+}
+
+@keyframes icon-doong {
+  0% {
+    transform: translateY(0);
+  }
+  30% {
+    transform: translateY(-8px);
+  }
+  60% {
+    transform: translateY(-8px);
+  }
+  100% {
+    transform: translateY(0);
   }
 }

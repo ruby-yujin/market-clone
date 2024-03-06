@@ -55,8 +55,13 @@ main .btn-write {
   justify-content: center;
   align-items: center;
   color: #fff;
-  background: orange;
+  background: var(--button-primary);
   font-size: 14px;
+  cursor: pointer;
+  transition: all 1s ease-in-out;
+}
+main .btn-write:hover {
+  background: var(--button-hover);
 }
 
 /*# sourceMappingURL=index.css.map */
