@@ -66,4 +66,31 @@ main {
       background: var(--button-hover);
     }
   }
+  // write
+  &.write-main {
+    max-width: 500px;
+    margin: 0 auto;
+    h1 {
+      text-align: center;
+      font-size: 20px;
+      margin: 20px 0;
+    }
+    .wirte-block {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 1rem;
+      label {
+        width: 40px;
+        color: #333;
+        font-size: 16px;
+      }
+      input {
+        width: calc(100% - 80px);
+        height: 28px;
+        border: 1px solid #ddd;
+        border-radius: 10px;
+      }
+    }
+  }
 }
