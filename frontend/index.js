@@ -15,7 +15,7 @@ const calcTime = (timestamp) => {
 const renderData = (data) => {
   const main = document.querySelector("main");
 
-  data.reverse().forEach((obj) => {
+  data.reverse().forEach(async (obj) => {
     //list block
     const mainItems = document.createElement("div");
     mainItems.className = "main-items";
@@ -25,7 +25,11 @@ const renderData = (data) => {
     itemsImg.className = "items-img";
 
     const imgView = document.createElement("img");
-    imgView.src = obj.image;
+    const res = await fetch(`/image/${obj.id}`);
+    const blob = await res.blob();
+    const url = URL.createObjectURL(blob);
+
+    imgView.src = url;
 
     // list 안에 텍스트 블럭
     const itemsInfoDiv = document.createElement("div");

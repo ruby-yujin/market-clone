@@ -9,7 +9,7 @@ main {
 main .main-items {
   display: flex;
   align-items: center;
-  margin: 10px 0;
+  margin: 14px 0;
 }
 main .main-items .items-img {
   border-radius: 16px;
@@ -23,8 +23,7 @@ main .main-items .items-img {
   align-items: center;
 }
 main .main-items .items-img > img {
-  width: 50px;
-  height: 50px;
+  width: 100%;
 }
 main .main-items .items-info {
   display: flex;
