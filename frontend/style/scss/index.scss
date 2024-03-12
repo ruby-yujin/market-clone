@@ -81,7 +81,7 @@ main {
       align-items: center;
       margin-bottom: 1rem;
       label {
-        width: 40px;
+        width: 80px;
         color: #333;
         font-size: 16px;
       }
@@ -90,6 +90,13 @@ main {
         height: 28px;
         border: 1px solid #ddd;
         border-radius: 10px;
+      }
+      #btn-submit {
+        width: 200px;
+        height: 40px;
+        color: #fff;
+        background: #66ae73;
+        margin: 0 auto;
       }
     }
   }

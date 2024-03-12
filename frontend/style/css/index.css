@@ -79,7 +79,7 @@ main.write-main .wirte-block {
   margin-bottom: 1rem;
 }
 main.write-main .wirte-block label {
-  width: 40px;
+  width: 80px;
   color: #333;
   font-size: 16px;
 }
@@ -88,6 +88,13 @@ main.write-main .wirte-block input {
   height: 28px;
   border: 1px solid #ddd;
   border-radius: 10px;
+}
+main.write-main .wirte-block #btn-submit {
+  width: 200px;
+  height: 40px;
+  color: #fff;
+  background: #66ae73;
+  margin: 0 auto;
 }
 
 /*# sourceMappingURL=index.css.map */

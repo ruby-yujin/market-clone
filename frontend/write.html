@@ -12,10 +12,10 @@
   <body>
     <main class="write-main">
       <h1>글쓰기</h1>
-      <form>
+      <form id="write-form">
         <div class="wirte-block">
           <label for="image">이미지</label>
-          <input type="text" id="image" name="image" />
+          <input type="file" id="image" name="image" />
         </div>
         <div class="wirte-block">
           <label for="title">제목</label>
@@ -23,7 +23,7 @@
         </div>
         <div class="wirte-block">
           <label for="price">가격</label>
-          <input type="text" id="price" name="price" />
+          <input type="number" id="price" name="price" />
         </div>
         <div class="wirte-block">
           <label for="description">설명</label>
@@ -33,7 +33,11 @@
           <label for="place">장소</label>
           <input type="text" id="place" name="place" />
         </div>
+        <div class="wirte-block">
+          <button type="submite" id="btn-submit">제출</button>
+        </div>
       </form>
     </main>
+    <script src="write.js"></script>
   </body>
 </html>
