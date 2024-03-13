@@ -9,7 +9,19 @@ import sqlite3
 con = sqlite3.connect('db.db',check_same_thread=False)
 cur = con.cursor()
 
+
 app = FastAPI()
+
+# class UserLogin(BaseModel):
+#     id:int
+#     password:str
+
+# id:Annotated[str,Form()],password:Annotated[str,Form()]
+
+@app.post('/signup')
+async def signup(id:Annotated[str,Form()], password:Annotated[str,Form()]):
+    print(id)
+    return'200'
 
 @app.post('/items')
 async def create_item(image:UploadFile,
@@ -50,6 +62,11 @@ async def get_image(item_id):
                               """).fetchone()[0]
 
     return Response(content=bytes.fromhex(image_bytes), media_type='image/*')
+
+
+
+
+
 
 # 정적인 파일을 받아서 웹서버에서 보여주기
 app.mount("/",StaticFiles(directory="frontend",html=True), name="frontend")
