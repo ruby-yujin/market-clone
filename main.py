@@ -12,16 +12,14 @@ cur = con.cursor()
 
 app = FastAPI()
 
-# class UserLogin(BaseModel):
-#     id:int
-#     password:str
-
-# id:Annotated[str,Form()],password:Annotated[str,Form()]
-
+# TODO 충히쓰
 @app.post('/signup')
-async def signup(id:Annotated[str,Form()], password:Annotated[str,Form()]):
+def signup(id:Annotated[str,Form()],
+           password:Annotated[str,Form()],
+           name:Annotated[str,Form()],
+           email:Annotated[str,Form()]):
     print(id)
-    return'200'
+    return '200'
 
 @app.post('/items')
 async def create_item(image:UploadFile,
