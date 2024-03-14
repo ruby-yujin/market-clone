@@ -38,7 +38,6 @@ const handleSubmit = async (e) => {
       alert("가입이 완료 되었습니다!");
       window.location.pathname = "login.html";
     }
-  } else {
   }
 };
 
