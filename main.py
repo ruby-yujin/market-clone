@@ -1,4 +1,4 @@
-from fastapi import FastAPI,UploadFile,Form,Response
+from fastapi import FastAPI,UploadFile,Form,Response,Depends
 from fastapi.responses import JSONResponse
 from fastapi.encoders import jsonable_encoder
 from fastapi.staticfiles import StaticFiles
@@ -18,12 +18,15 @@ SERCRET = 'super-coding'
 manager = LoginManager(SERCRET,'/login') 
 
 @manager.user_loader()
-def query_user(id):
+def query_user(data):
+    WHERE_STATEMENTS = f'id="{data}"'
+    if type (data) == dict:
+        WHERE_STATEMENTS = f'id="{data['id']}"'
      # 컬럼명 가져오기
     con.row_factory = sqlite3.Row
     cur = con.cursor()
     user = cur.execute(f"""
-                       SELECT * from users WHERE id='{id}'
+                       SELECT * from users WHERE {WHERE_STATEMENTS}
                        """).fetchone()
     return user
 
@@ -37,10 +40,11 @@ def login(id:Annotated[str,Form()],
         raise InvalidCredentialsException
     
     access_token = manager.create_access_token(data={
-        'id': user['id'],
-        'password': user['password'],
-        'name':user['name'],
-        'email':user['email']
+        'sub':{
+            'id': user['id'],
+            'name':user['name'],
+            'email':user['email']
+        }
     })
     
     return {'access_token':access_token}
@@ -81,7 +85,7 @@ async def create_item(image:UploadFile,
     return "200"
     
 @app.get('/items')
-async def get_items():
+async def get_items(user=Depends(manager)):
     # 컬럼명 가져오기
     con.row_factory = sqlite3.Row
     cur = con.cursor()
