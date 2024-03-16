@@ -1,5 +1,6 @@
 {
   "compilerOptions": {
+    // bundler to change node
     "moduleResolution": "bundler",
     "target": "ESNext",
     "module": "ESNext",
