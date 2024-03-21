@@ -118,4 +118,23 @@ main.signup-main .signup-block .btn-default {
   margin: 0 auto;
 }
 
+.btn-google-login {
+  width: 200px;
+  height: 40px;
+  margin: 0 auto;
+  background: none;
+  color: #333;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+}
+.btn-google-login img {
+  width: 30px;
+  height: 30px;
+  margin-right: 10px;
+}
+
 /*# sourceMappingURL=index.css.map */

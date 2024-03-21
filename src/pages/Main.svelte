@@ -3,6 +3,8 @@
   import Footer from "../components/Footer.svelte";
   import { onMount } from "svelte";
 
+
+
   $: items = [];
 
   const db = getDatabase();
