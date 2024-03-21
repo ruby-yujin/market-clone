@@ -33,6 +33,7 @@ main {
       margin-left: 15px;
       .items-title {
         font-size: 18px;
+        margin-bottom: 10px;
       }
       .items-time {
         font-size: 12px;
@@ -40,8 +41,13 @@ main {
         margin: 8px 0;
       }
       .items-price {
+        margin: 10px 0;
         font-weight: bold;
         font-size: 16px;
+      }
+      .items-decs {
+        font-size: 12px;
+        color: #333;
       }
     }
   }

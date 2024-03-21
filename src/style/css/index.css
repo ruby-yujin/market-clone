@@ -32,6 +32,7 @@ main .main-items .items-info {
 }
 main .main-items .items-info .items-title {
   font-size: 18px;
+  margin-bottom: 10px;
 }
 main .main-items .items-info .items-time {
   font-size: 12px;
@@ -39,8 +40,13 @@ main .main-items .items-info .items-time {
   margin: 8px 0;
 }
 main .main-items .items-info .items-price {
+  margin: 10px 0;
   font-weight: bold;
   font-size: 16px;
+}
+main .main-items .items-info .items-decs {
+  font-size: 12px;
+  color: #333;
 }
 main .btn-write {
   position: absolute;

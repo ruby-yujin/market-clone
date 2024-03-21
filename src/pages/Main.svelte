@@ -1,4 +1,37 @@
+<script>
+  import { getDatabase, ref, onValue } from "firebase/database";
+  import Footer from "../components/Footer.svelte";
+  import { onMount } from "svelte";
 
+  $: items = [];
+
+  const db = getDatabase();
+  const itemsRef = ref(db, 'items/' );
+
+  onMount(()=>{
+    onValue(itemsRef, (snapshot) => {
+      const data = snapshot.val();
+      items = Object.values(data).reverse();
+      console.log(items);
+    });
+  })
+
+  const calcTime = (timestamp) => {
+  //한국시간은 세계시간 -9
+  const curTime = new Date().getTime() - 9 * 60 * 60 * 1000;
+  const time = new Date(curTime - timestamp);
+  const hour = time.getHours();
+  const minute = time.getMinutes();
+  const second = time.getSeconds();
+
+  if (hour > 0) return `${hour}시간 전`;
+  else if (minute > 0) return `${minute}분 전`;
+  else if (second >= 0) return `${second}초 전`;
+  else return "방금 전";
+};
+
+    
+</script>
 
 <div class="mediaquery-dim">화면 사이즈를 줄여주세요</div>
 
@@ -28,36 +61,27 @@
 
   <!-- main -->
   <main>
-
+    {#each items as item}
+    <div class="main-items">
+      <div class="items-img">
+        <img src={item.imgUrl} alt={item.title}>
+      </div> 
+  
+      <div class="items-info">
+        <div class="items-title">{item.title}</div>
+     
+        <p>
+          <span class="items-time">{item.place}</span>
+          <span class="items-time">/ {calcTime(item.insertAt)}</span>
+        </p>
+        <strong class="items-price">{item.price}</strong>
+        <p class="items-decs">{item.description}</p>
+      </div>    
+    </div>
+    {/each}
     <a class="btn-write" href="#/write">+ 글쓰기</a>
   </main>
 
-  <!-- footer -->
-  <footer>
-    <div class="footer-bar">
-      <img src="assets/img/home.svg" alt="" />
-      <p>홈</p>
-    </div>
-    <div class="footer-bar">
-      <img src="assets/img/book.svg" alt="" />
-      <p>동네생활</p>
-    </div>
-    <div class="footer-bar">
-      <img src="assets/img/map.svg" alt="" />
-      <p>내 근처</p>
-    </div>
-    <div class="footer-bar">
-      <img src="assets/img/chat.svg" alt="" />
-      <p>채팅</p>
-    </div>
-    <div class="footer-bar">
-      <img src="assets/img/person.svg" alt="" />
-      <p>나의 당근</p>
-    </div>
-  </footer>
+ <Footer  location="/"/>
 </div>
 
-
-<style>
-
-</style>

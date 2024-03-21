@@ -1,31 +1,53 @@
 <script>
-import { getDatabase, ref, push } from "firebase/database";
-
-let title
-let price
-let description
-let place
-
-function writeUserData() {
-  console.log('호출');
+  import { getDatabase, push, ref } from "firebase/database";
+    import Footer from "../components/Footer.svelte";
+    import { getStorage, ref as refImage, uploadBytes,getDownloadURL } from "firebase/storage";
+  
+  let title;
+  let price;
+  let description;
+  let place;
+  let files;
+  
+  const storage = getStorage();
   const db = getDatabase();
-  push(ref(db, 'items/'+ title), {
-    title,
-    price,
-    description,
-    place, 
-  });
+  
+  
+  function writeUserData(imgUrl) {
+    push(ref(db, 'items/'), {
+      title,
+      price,
+      description,
+      place,
+      insertAt: new Date().getTime,
+      imgUrl,
+    });
+    window.location.hash = '/';
+  }
+  
+  const uploadFile = async () =>{
+    const file = files[0];
+    const name = file.name;
+    const imgRef = refImage(storage,name);
+    await uploadBytes(refImage(storage,name),file);
+    const url = await getDownloadURL(imgRef);
+    return url;
+  }
+  
+  const handleSubmit = async () =>{
+    const url = await uploadFile();
+    writeUserData(url);
+  }
+  </script>
 
-}
 
-</script>
 <main class="write-main">
     <h1>글쓰기</h1>
-    <form id="write-form" on:submit|preventDefault={writeUserData}>
-      <!-- <div class="wirte-block">
+    <form id="write-form" on:submit|preventDefault={handleSubmit}>
+      <div class="wirte-block">
         <label for="image">이미지</label>
-        <input type="file" id="image" name="image" />
-      </div> -->
+        <input  bind:files={files} type="file" id="image" name="image" />
+      </div>
       <div class="wirte-block">
         <label for="title">제목</label>
         <input type="text" id="title" name="title" bind:value={title}/>
@@ -49,3 +71,5 @@ function writeUserData() {
       </div>
     </form>
   </main>
+
+<Footer location="write"/>

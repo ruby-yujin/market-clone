@@ -78,6 +78,10 @@ header {
 
 // * footer * //
 footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
   height: 60px;
   display: flex;
   justify-content: space-between;
@@ -87,6 +91,8 @@ footer {
   .footer-bar {
     text-align: center;
     cursor: pointer;
+    background: none;
+    box-shadow: none;
     &:hover img {
       animation: 1.8s icon-doong;
     }
