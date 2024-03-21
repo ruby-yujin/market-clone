@@ -2,8 +2,12 @@
 <script> 
     export let location;
 
-    const moveToHome = () =>{
+    const moveToHome = () => {
         window.location.hash = "/";
+    }
+
+    const moveMypage = () => {
+      window.location.hash = "/mypage";
     }
 </script>
   
@@ -28,8 +32,12 @@
       <img src="assets/img/chat.svg" alt="" />
       <p>채팅</p>
     </div>
-    <div class="footer-bar">
+    <button class="footer-bar" on:click={moveMypage}>
+      {#if location === '/mypage'} 
+      <img src="assets/img/person_on.svg" alt="" />
+      {:else}
       <img src="assets/img/person.svg" alt="" />
+      {/if}
       <p>나의 당근</p>
-    </div>
+    </button>
   </footer>
